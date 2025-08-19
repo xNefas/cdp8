@@ -1,14 +1,17 @@
 {
   lib,
   stdenv,
+  system,
   cmake,
   pkg-config,
   fetchFromGitHub,
   libaaio ? ((import (fetchTarball {
       url = "https://github.com/NixOS/nixpkgs/archive/32f313e49e42f715491e1ea7b306a87c16fe0388.tar.gz";
       sha256 = "sha256:1z4ga87qla5300qwib3dnjnkaywwh8y1qqsb8w2mrsrw78k9xmlw";
-    }) {}).callPackage
-    ./libaaio.nix {}),
+    }) {
+      inherit system;
+    }).callPackage
+  ./libaaio.nix {}),
   ...
 }:
 stdenv.mkDerivation {
@@ -32,9 +35,9 @@ stdenv.mkDerivation {
     tar xzf ${libaaio.src} -C $sourceRoot/libaaio --strip-components=1
   '';
 
-  cmakeFlags = [
+  cmakeFlags = ''
     "-DAAIOLIB=${libaaio}/lib/libaaio.so"
-  ];
+  '';
 
   cmakeBuildDir = "source/build";
 
