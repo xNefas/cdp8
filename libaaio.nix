@@ -12,7 +12,7 @@ stdenv.mkDerivation rec {
 
   src = fetchurl {
     url = "https://github.com/ComposersDesktop/CDP8/blob/main/libaaio/libaaio-0.3.1.tar.bz2";
-    hash = lib.fakeHash; # Will be replaced by actual hash
+    hash = "sha256-nGuamU9nYP+S7otdAFETfjIuXDp08ncCTQx2IrSDvR4="; # Will be replaced by actual hash
   };
 
   nativeBuildInputs = [
