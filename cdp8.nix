@@ -35,9 +35,9 @@ stdenv.mkDerivation {
     tar xzf ${libaaio.src} -C $sourceRoot/libaaio --strip-components=1
   '';
 
-  cmakeFlags = ''
-    "-DAAIOLIB=${libaaio}/lib/libaaio.so"
-  '';
+  cmakeFlags = [
+    "-DAAIOLIB=${lib.getLib libaaio}/lib/libaaio.so"
+  ];
 
   cmakeBuildDir = "source/build";
 
