@@ -54,7 +54,8 @@ stdenv.mkDerivation {
   meta = with lib; {
     description = "CDP8 audio processing toolkit";
     maintainers = with maintainers; [enkarterisi];
-    license = licenses.lgpl21Only;
+    homepage = "https://www.composersdesktop.com/";
+    license = licenses.lgpl21;
     platforms = platforms.linux;
     mainProgram = "cdp8";
   };
