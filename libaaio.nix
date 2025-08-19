@@ -15,14 +15,6 @@ stdenv.mkDerivation rec {
     sha256 = lib.fakeHash; # Will be replaced by actual hash
   };
 
-  unpackPhase = ''
-    ls -la
-    cd $out
-    ls -la
-    # tar -xfj
-    echo 1
-  '';
-
   nativeBuildInputs = [
     pkg-config
     cmake
