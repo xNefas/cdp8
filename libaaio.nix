@@ -16,7 +16,7 @@ stdenv.mkDerivation rec {
   };
 
   unpackPhase = ''
-    tar -xfj $out
+    tar -xjf $out
   '';
 
   nativeBuildInputs = [
