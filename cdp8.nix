@@ -7,14 +7,14 @@
   libaaio,
   ...
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "cdp8";
-  version = "8.0.0";
+  version = "8.0";
 
   src = fetchFromGitHub {
     owner = "ComposersDesktop";
     repo = "CDP8";
-    rev = "CDP8.0";
+    rev = "CDP${version}";
     hash = "sha256-/L0ncIcB0OardDykhNHwJ3ae09Sh4iNOQSZRgNV7ZPQ=";
   };
 
