@@ -14,7 +14,7 @@
   ./libaaio.nix {}),
   ...
 }:
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "cdp8";
   version = "8.0.0";
 
@@ -25,15 +25,12 @@ stdenv.mkDerivation {
     hash = "sha256-/L0ncIcB0OardDykhNHwJ3ae09Sh4iNOQSZRgNV7ZPQ=";
   };
 
+  sourceRoot = "${pname}-${version}";
+
   nativeBuildInputs = [
     pkg-config
     cmake
   ];
-
-  postUnpack = ''
-    # Extract libaaio source into libaaio subdirectory
-    tar xzf ${libaaio.src} -C $sourceRoot/libaaio --strip-components=1
-  '';
 
   cmakeFlags = [
     "-DAAIOLIB=${lib.getLib libaaio}/lib/libaaio.so"
