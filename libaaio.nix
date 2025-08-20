@@ -11,13 +11,9 @@ stdenv.mkDerivation rec {
   version = "8.0.0";
 
   src = fetchurl {
-    url = "https://github.com/ComposersDesktop/CDP8/blob/main/libaaio/libaaio-0.3.1.tar.bz2";
-    hash = "sha256-UkPSSVq0cjNuUyDIstavyjFuH2E4H0/yhJz5T/MRrnA=";
+    url = "https://github.com/ComposersDesktop/CDP8/raw/456ffe0687c8d8206f8bc4e22273587db4c0ee0a/libaaio/libaaio-0.3.1.tar.bz2";
+    hash = "sha256-tnuRgquD2kpQu/wu+HncrF1jbOhoYKMU+jNuQZq6LFE=";
   };
-
-  unpackPhase = ''
-    tar -xjf $out
-  '';
 
   nativeBuildInputs = [
     pkg-config
