@@ -3,7 +3,10 @@
   stdenv,
   fetchurl,
   pkg-config,
-  cmake,
+  autoreconfHook,
+  automake,
+  autoconf,
+  ...
 }:
 stdenv.mkDerivation rec {
   pname = "libaaio";
@@ -14,16 +17,17 @@ stdenv.mkDerivation rec {
     hash = "sha256-H4oDCOinm7hSeznk5Bf17yd9g5Ub+szqaV1iwmtyFUQ=";
   };
 
-  configurePhase = ''
-    ls -la
-    ./configure --prefix=$out
-  '';
+  autoreconfFlags = [
+    "--prefix=$out"
+  ];
 
   sourceRoot = "${pname}-${version}";
 
   nativeBuildInputs = [
     pkg-config
-    cmake
+    automake
+    autoreconfHook
+    autoconf
   ];
 
   meta = with lib; {
