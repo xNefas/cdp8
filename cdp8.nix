@@ -22,7 +22,7 @@ stdenv.mkDerivation {
     owner = "ComposersDesktop";
     repo = "CDP8";
     rev = "CDP8.0";
-    hash = "sha256-rU+xhLZhGln3/8RlIC20UqyMCymfaApLo86C2PKDU7w=";
+    hash = "sha256-/L0ncIcB0OardDykhNHwJ3ae09Sh4iNOQSZRgNV7ZPQ=";
   };
 
   nativeBuildInputs = [
