@@ -2,11 +2,12 @@
   lib,
   stdenv,
   fetchurl,
+  portaudio,
   pkg-config,
   autoreconfHook,
 }:
 stdenv.mkDerivation rec {
-  pname = "libaaio";
+  pname = "paprogs";
   version = "0.3.1";
 
   src = fetchurl {
@@ -17,6 +18,7 @@ stdenv.mkDerivation rec {
   sourceRoot = "${pname}-${version}";
 
   nativeBuildInputs = [
+    portaudio
     pkg-config
     autoreconfHook
   ];

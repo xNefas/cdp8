@@ -1,50 +1,38 @@
-{
-  lib,
-  stdenv,
-  cmake,
-  pkg-config,
-  fetchFromGitHub,
-  libaaio,
-  ...
-}:
-stdenv.mkDerivation rec {
+{ lib, stdenv, cmake, pkg-config, fetchFromGitHub, libaaio, portaudio, alsa-lib
+, jack2, }:
+stdenv.mkDerivation (self: {
   pname = "cdp8";
   version = "8.0";
 
   src = fetchFromGitHub {
     owner = "ComposersDesktop";
     repo = "CDP8";
-    rev = "CDP${version}";
+    rev = "CDP${self.version}";
     hash = "sha256-/L0ncIcB0OardDykhNHwJ3ae09Sh4iNOQSZRgNV7ZPQ=";
   };
 
-  nativeBuildInputs = [
-    pkg-config
-    cmake
+  nativeBuildInputs = [ cmake libaaio pkg-config ];
+
+  buildInputs = [
+    (portaudio.overrideAttrs (old: {
+      configureFlags = old.configureFlags
+        ++ [ "--enable-static" "--with-alsa" "--with-jack" ];
+    }))
+    alsa-lib
+    jack2
   ];
 
   cmakeFlags = [
     "-DAAIOLIB=${lib.getLib libaaio}/lib/libaaio.so"
+    "-DPORTAUDIOLIB=${portaudio}/lib/libportaudio.a" # CDP expects static library
   ];
 
-  cmakeBuildDir = "source/build";
-
-  installPhase = ''
-    runHook preInstall
-
-    # Install CDP8 binaries
-    mkdir -p $out/bin
-    cp -t $out/bin source/build/NewRelease/*
-
-    runHook postInstall
-  '';
-
-  meta = with lib; {
+  meta = {
     description = "CDP8 audio processing toolkit";
-    maintainers = with maintainers; [enkarterisi];
+    maintainers = [ lib.maintainers.enkarterisi ];
     homepage = "https://www.composersdesktop.com/";
-    license = licenses.lgpl21;
-    platforms = platforms.linux;
+    license = lib.licenses.lgpl21;
+    platforms = lib.platforms.linux;
     mainProgram = "cdp8";
   };
-}
+})
