@@ -10,10 +10,14 @@ stdenv.mkDerivation rec {
   pname = "libaaio";
   version = "8.0.0";
 
-  src = builtins.fetchTarball {
+  src = fetchurl {
     url = "https://github.com/ComposersDesktop/CDP8/blob/main/libaaio/libaaio-0.3.1.tar.bz2";
-    sha256 = lib.fakeHash; # Will be replaced by actual hash
+    hash = "sha256-UkPSSVq0cjNuUyDIstavyjFuH2E4H0/yhJz5T/MRrnA=";
   };
+
+  unpackPhase = ''
+    tar -xfj $out
+  '';
 
   nativeBuildInputs = [
     pkg-config
