@@ -11,9 +11,10 @@
     in {
       packages.${system} = {
         libaaio = pkgs.callPackage ./libaaio.nix { };
-        default = pkgs.callPackage ./cdp8.nix {
+        cdp8 = pkgs.callPackage ./cdp8.nix {
           inherit (self.packages.${system}) libaaio;
         };
+        default = self.packages.${system}.cdp8;
       };
     };
 }
