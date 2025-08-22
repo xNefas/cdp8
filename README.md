@@ -2,7 +2,7 @@
 
 ## **Disclaimer**
 
-**This project utilizes AI-assisted development with MCP Internet Grounding. Please note:**
+# **This project utilizes AI-assisted development with MCP Internet Grounding. Please note:**
 
 - Repeated public code patterns may appear due to AI-assisted development
 - **ALL** development involved continuous human supervision and intervention
