@@ -1,4 +1,4 @@
-{ lib, libcxxStdenv, cmake, pkg-config, fetchFromGitHub, libaaio, portaudio
+{ lib, libcxxStdenv, libaaio, cmake, pkg-config, fetchFromGitHub, portaudio
 , alsa-lib, jack2, autoPatchelfHook }:
 let
   portaudioWithAlsaJack = portaudio.overrideAttrs (old: {
