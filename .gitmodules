@@ -1,0 +1,3 @@
+[submodule "cdp8-src"]
+	path = cdp8-src
+	url = https://github.com/ComposersDesktop/CDP8.git
